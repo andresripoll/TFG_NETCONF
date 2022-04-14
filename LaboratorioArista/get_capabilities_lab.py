@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#Autor: Andrés Ripoll
 
 from ncclient import manager
 import sys

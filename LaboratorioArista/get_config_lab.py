@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#Autor: Andrés Ripoll
+
 from ncclient import manager
 
 eos = manager.connect(
@@ -10,6 +13,6 @@ eos = manager.connect(
 )
 
 #Get Configurations
-print(eos.get_config())
+print(eos.get_config(source="running"))
 
 eos.close_session()

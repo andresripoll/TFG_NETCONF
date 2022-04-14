@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#Autor: Andrés Ripoll
+
 from ncclient import manager
 # https://community.cisco.com/t5/devnet-sandbox/
 # connect-to-ios-xr-always-on-sandbox-using-ncclient/td-p/4442858

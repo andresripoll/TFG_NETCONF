@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#Autor: Andrés Ripoll
+
 from ncclient import manager
 
 eos = manager.connect(
