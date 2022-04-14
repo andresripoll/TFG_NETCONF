@@ -15,7 +15,7 @@ python3 instalacion.py docker
 ```
 
 ## Configuración
-Una vez instalado todo lo necesario para arrancar el escenario, arrastrar el archivo configuracion.py, que se encuentra en la carpeta Instalacion, hasta la carpeta clab-quickstart que se ha creado previamente al instalar containerLab. Todos los comandos vienen explicados en el script, y son los siguientes:
+Una vez instalado todo lo necesario para arrancar el escenario, arrastrar los archivos configuracion.py y startup-config, que se encuentran en la carpeta Instalacion, hasta la carpeta clab-quickstart que se ha creado previamente al instalar containerLab. Todos los comandos vienen explicados en el script, y son los siguientes:
 
 * Instalación y configuración de las imágenes de los routers(se necesita un ordenador con al menos dos núcleos):
 ```bash
