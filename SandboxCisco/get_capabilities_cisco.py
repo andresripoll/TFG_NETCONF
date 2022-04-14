@@ -3,7 +3,7 @@ from ncclient import manager
 # connect-to-ios-xr-always-on-sandbox-using-ncclient/td-p/4442858
 nc=manager.connect(
             host = "sandbox-iosxr-1.cisco.com", 
-			port = "830", 
+			port = "22", 
 			timeout = 30,
             username = "admin",
             password = "C1sco12345",
