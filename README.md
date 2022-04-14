@@ -31,4 +31,4 @@ python3 configuracion.py laboratorio
 ```bash
 python3 configuracion.py prepare
 ```
-*Nota: Se recomienda usar estos tres comandos en el orden en el que están expuestos aquí.
+*Nota: Se recomienda usar estos tres comandos en el orden en el que están expuestos aquí.*
