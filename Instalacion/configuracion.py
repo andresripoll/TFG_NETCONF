@@ -52,13 +52,14 @@ def ayuda_lab():
 	print("laboratorio              ---> para crear el laboratorio de containerlab.")
 
 def ayuda_prepare():
-	print("prepare                  ---> para habilitar la configuración inicial con netconf en el router Arita.")
+	print("prepare                  ---> para habilitar la configuración inicial con netconf en el router Arista.")
 
 #Inicio del script
 
 #Comprobamos que nos pasan más de dos argumentos
 if len(sys.argv) < 2:
 	print("Comandos disponibles:")
+	print("")
 	mostrar_ayuda()
 	sys.exit()
 
