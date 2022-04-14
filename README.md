@@ -8,6 +8,10 @@ Para la correcta instalación del escenario, ejectutar el archivo [instalacion.p
 ```bash
 python3 instalacion.py containerlab
 ```
+* Instalación de ncclient:
+```bash
+python3 instalacion.py ncclient
+```
 
 * Instalación de docker:
 ```bash
