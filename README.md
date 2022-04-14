@@ -27,7 +27,7 @@ python3 configuracion.py imagenes
 python3 configuracion.py laboratorio
 ```
 
-* Habilitar la configuración inicial con netconf en el router Arita:
+* Habilitar la configuración inicial con netconf en el router Arista:
 ```bash
 python3 configuracion.py prepare
 ```
