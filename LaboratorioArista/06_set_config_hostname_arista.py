@@ -15,7 +15,7 @@ eos = manager.connect(
 	allow_agent = False
 )
 
-#Get Configurations
+#Set Configurations
 cfg_hostname = """
 <config>
 	<system
