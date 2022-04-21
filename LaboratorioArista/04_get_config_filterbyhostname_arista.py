@@ -26,3 +26,5 @@ hostname = """
 </system>
 """
 print(eos.get_config(source="running", filter=("subtree", hostname)))
+
+eos.close_session()

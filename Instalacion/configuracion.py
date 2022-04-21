@@ -12,8 +12,8 @@ def instalar_imagenes():
 	call("docker pull ghcr.io/nokia/srlinux:latest", shell=True)
 	call("docker import cEOS-lab-4.26.4M.tar.xz ceosimage:4.26.4M", shell=True)
 
-	fin = open("/srlceos01.clab.yml", 'r') # in file
-	fout = open("/srlceos01Tmp.clab.yml", 'w') # out file
+	fin = open("./srlceos01.clab.yml", 'r') # in file
+	fout = open("./srlceos01Tmp.clab.yml", 'w') # out file
 	for line in fin:
 		if "image: ceos:4.25.0F" in line:
 			fout.write("        image: ceos:4.25.0F".replace("ceos:4.25.0F", "ceosimage:4.26.4M"))
@@ -24,8 +24,12 @@ def instalar_imagenes():
 	call("sudo cat ./srlceos01Tmp.clab.yml > ./srlceos01.clab.yml", shell=True)
 	call("sudo rm ./srlceos01Tmp.clab.yml", shell=True)
 
-#Funcion para crear el lab
-def crear_lab():
+#Funcion para crear el lab de router cisco con arista
+def crear_lab_ca():
+	call("sudo containerlab deploy --topo csrceos01.clab.yml --reconfigure", shell=True)
+
+#Funcion para crear el lab de router nokia con arista
+def crear_lab_na():
 	call("sudo containerlab deploy --topo srlceos01.clab.yml --reconfigure", shell=True)
 
 #Prepara el entorno para el uso de netconf
@@ -37,7 +41,9 @@ def preparar_entorno():
 def mostrar_ayuda():
 	ayuda_imagenes()
 	print("")
-	ayuda_lab()
+	ayuda_lab_ca()
+	print("")
+	ayuda_lab_na()
 	print("")
 	ayuda_prepare()
 	print("")
@@ -48,8 +54,11 @@ def mostrar_ayuda():
 def ayuda_imagenes():
 	print("imagenes                 ---> para instalar las imagenes de los routers del laboratorio. En concreto serán un router Nokia y el router Arista 4.26.4M.")
 
-def ayuda_lab():
-	print("laboratorio              ---> para crear el laboratorio de containerlab.")
+def ayuda_lab_ca():
+	print("labca              ---> para crear el laboratorio de containerlab con un router Arista y uno de Cisco.")
+
+def ayuda_lab_na():
+	print("labna              ---> para crear el laboratorio de containerlab con un router Arista y uno de Nokia.")
 
 def ayuda_prepare():
 	print("prepare                  ---> para habilitar la configuración inicial con netconf en el router Arista.")
@@ -66,16 +75,20 @@ if len(sys.argv) < 2:
 #Ordenes
 if sys.argv[1] == "imagenes":
 	instalar_imagenes()
-elif sys.argv[1] == "laboratorio":
-	crear_lab()
+elif sys.argv[1] == "labca":
+	crear_lab_ca()
+elif sys.argv[1] == "labna":
+	crear_lab_na()
 elif sys.argv[1] == "prepare":
 	preparar_entorno()
 elif sys.argv[1] == "help":
 	if len(sys.argv) > 2:
 		if (sys.argv[2] == "imagenes"):
 			ayuda_imagenes()
-		elif (sys.argv[2] == "laboratorio"):
-			ayuda_lab()
+		elif (sys.argv[2] == "labca"):
+			ayuda_lab_ca()
+		elif (sys.argv[2] == "labna"):
+			ayuda_lab_na()
 		elif (sys.argv[2] == "prepare"):
 			ayuda_prepare()
 		else:

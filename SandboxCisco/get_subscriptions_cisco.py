@@ -20,11 +20,11 @@ with manager.connect(**router) as m:
     subs = ["/memory-ios-xe-oper:memory-statistics/memory-statistic"]
     for sub in subs:
         rcp = f"""
-            <establish-subscription xmlns='urn:ietf:xml:ns:yang:ietf-event-notifications' xmlns:yp='urn:ietf:params:xml:ns:yang:ieft-yang-push'>
-                <stream>yp:yang-push</stream>
+            <create-subscription xmlns='urn:ietf:params:netconf:capability:notification:1.0' xmlns:yp='urn:ietf:params:xml:ns:yang:ietf-yang-types'>
+                <stream>yp:yang-types</stream>
                 <yp:xpath-filter>{sub}</yp:xpath-filter>
                 <yp:period>500</yp:period>
-            </establish-subscription>
+            </create-subscription>
         """
         response = m.dispatch(fromstring(rcp))
         python_resp = xmltodict.parse(response.xml)

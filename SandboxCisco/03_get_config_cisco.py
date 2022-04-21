@@ -3,7 +3,6 @@
 #Autor: Andrés Ripoll
 
 from ncclient import manager
-from xml.etree.ElementTree import tostring
 
 nc = manager.connect(
 	host = "sandbox-iosxr-1.cisco.com", 
@@ -20,9 +19,8 @@ nc = manager.connect(
 config = nc.get_config(source="running")
 print(config)
 
-mydata = tostring(config.data, encoding="unicode")
-f = open("config_cisco.xml", mode = "w")
-f.write(mydata)
-f.close
+mydata = open("config_cisco.xml", mode = "w")
+mydata.write(str(config))
+mydata.close
 
 nc.close_session()

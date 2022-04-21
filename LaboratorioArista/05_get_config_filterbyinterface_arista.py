@@ -25,3 +25,5 @@ Interface_eth1 = """
 </interfaces>
 """
 print(eos.get_config(source="running", filter=("subtree", Interface_eth1)))
+
+eos.close_session()

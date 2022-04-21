@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#03_get_config_arista.py
+#06_set_config_hostname_arista.py
 #Autor: Andrés Ripoll
 
 from ncclient import manager
@@ -16,11 +16,22 @@ eos = manager.connect(
 )
 
 #Get Configurations
-config = eos.get_config(source="running")
-print(config)
+cfg_hostname = """
+<config>
+	<system
+		xmlns="http://openconfig.net/yang/system">
+		<config>
+			<hostname>test1234</hostname>
+		</config>
+	</system>
+</config>
+"""
 
-mydata = open("config_arista.xml", mode = "w")
-mydata.write(str(config))
-mydata.close
+reply = eos.edit_config(
+	target="running",
+	config=cfg_hostname,
+	default_operation="merge",
+)
+print(reply)
 
 eos.close_session()
