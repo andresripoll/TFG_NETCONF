@@ -6,7 +6,7 @@ from ncclient import manager
 
 nc = manager.connect(
 	host = "sandbox-iosxr-1.cisco.com", 
-	port = "22", 
+	port = "830", 
 	timeout = 30,
 	username = "admin",
 	password = "C1sco12345",

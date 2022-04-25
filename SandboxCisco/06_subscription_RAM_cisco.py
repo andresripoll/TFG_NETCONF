@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
+#06_subscription_RAM_cisco.py
 #Autor: Andrés Ripoll
 
 from ncclient import manager
@@ -7,9 +8,9 @@ import xmltodict
 from lxml.etree import fromstring
 
 router = {
-    "host": "sandbox-iosxr-1.cisco.com",
-    "port": "22",
-    "username": "admin",
+    "host": "sandbox-iosxe-latest-1.cisco.com",
+    "port": "830",
+    "username": "developer",
     "password": "C1sco12345",
     "hostkey_verify": False,
     "look_for_keys": False,
@@ -20,11 +21,11 @@ with manager.connect(**router) as m:
     subs = ["/memory-ios-xe-oper:memory-statistics/memory-statistic"]
     for sub in subs:
         rcp = f"""
-            <create-subscription xmlns='urn:ietf:params:netconf:capability:notification:1.0' xmlns:yp='urn:ietf:params:xml:ns:yang:ietf-yang-types'>
-                <stream>yp:yang-types</stream>
+            <establish-subscription xmlns="urn:ietf:params:xml:ns:yang:ietf-event-notifications" xmlns:yp="urn:ietf:params:xml:ns:yang:ietf-yang-push">
+                <stream>yp:yang-push</stream>
                 <yp:xpath-filter>{sub}</yp:xpath-filter>
                 <yp:period>500</yp:period>
-            </create-subscription>
+            </establish-subscription>
         """
         response = m.dispatch(fromstring(rcp))
         python_resp = xmltodict.parse(response.xml)
