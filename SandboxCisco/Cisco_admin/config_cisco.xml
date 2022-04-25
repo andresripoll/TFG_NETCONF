@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<rpc-reply message-id="urn:uuid:779baf6f-8f0a-4532-87bd-4dbaef4a5334" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc-reply message-id="urn:uuid:98bce6af-f98e-4fe2-b251-4fa6d1df706d" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
  <data>
   <telemetry-model-driven xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-telemetry-model-driven-cfg">
    <destination-groups>
@@ -984,6 +984,15 @@ end-set
    <editor>vim</editor>
    <route-policies>
     <route-policy>
+     <route-policy-name>xyz</route-policy-name>
+     <rpl-route-policy>route-policy xyz
+  if community matches-any xyz then
+    done
+  endif
+end-policy
+</rpl-route-policy>
+    </route-policy>
+    <route-policy>
      <route-policy-name>PREP</route-policy-name>
      <rpl-route-policy>route-policy PREP
   if destination in TEST1 then
@@ -1243,9 +1252,6 @@ end-policy
     </ssh>
    </agent>
   </netconf-yang>
-  <host-names xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-shellutil-cfg">
-   <host-name>ansible-iosxr</host-name>
-  </host-names>
   <vrfs xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-cfg">
    <vrf>
     <vrf-name>7</vrf-name>
@@ -1397,6 +1403,7 @@ end-policy
     <active>act</active>
     <interface-name>Loopback0</interface-name>
     <interface-virtual></interface-virtual>
+    <description>JUNIPER ROCKS!</description>
     <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
      <addresses>
       <primary>
@@ -1410,6 +1417,7 @@ end-policy
     <active>act</active>
     <interface-name>Loopback1</interface-name>
     <interface-virtual></interface-virtual>
+    <description>JUNIPER!</description>
    </interface-configuration>
    <interface-configuration>
     <active>act</active>
@@ -1446,6 +1454,20 @@ end-policy
       <primary>
        <address>192.168.10.1</address>
        <netmask>255.255.255.0</netmask>
+      </primary>
+     </addresses>
+    </ipv4-network>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
+    <interface-name>Loopback11</interface-name>
+    <interface-virtual></interface-virtual>
+    <description>test11</description>
+    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+     <addresses>
+      <primary>
+       <address>11.11.11.11</address>
+       <netmask>255.255.255.255</netmask>
       </primary>
      </addresses>
     </ipv4-network>
@@ -1552,7 +1574,7 @@ end-policy
     <active>act</active>
     <interface-name>Loopback111</interface-name>
     <interface-virtual></interface-virtual>
-    <description>Configured by NETCONF</description>
+    <description>NETCONF OpenConfig test</description>
     <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
      <addresses>
       <primary>
@@ -1561,6 +1583,7 @@ end-policy
       </primary>
      </addresses>
     </ipv4-network>
+    <shutdown></shutdown>
    </interface-configuration>
    <interface-configuration>
     <active>act</active>
@@ -1578,8 +1601,14 @@ end-policy
    </interface-configuration>
    <interface-configuration>
     <active>act</active>
+    <interface-name>Loopback444</interface-name>
+    <interface-virtual></interface-virtual>
+   </interface-configuration>
+   <interface-configuration>
+    <active>act</active>
     <interface-name>Loopback666</interface-name>
     <interface-virtual></interface-virtual>
+    <description>test_ansible_666</description>
     <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
      <addresses>
       <primary>
@@ -1660,11 +1689,6 @@ end-policy
    </interface-configuration>
    <interface-configuration>
     <active>act</active>
-    <interface-name>Loopback956</interface-name>
-    <interface-virtual></interface-virtual>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
     <interface-name>Loopback996</interface-name>
     <interface-virtual></interface-virtual>
     <description>testrterte</description>
@@ -1679,19 +1703,6 @@ end-policy
       <primary>
        <address>1.1.1.1</address>
        <netmask>255.255.255.255</netmask>
-      </primary>
-     </addresses>
-    </ipv4-network>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>Loopback9991</interface-name>
-    <interface-virtual></interface-virtual>
-    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
-     <addresses>
-      <primary>
-       <address>10.10.10.2</address>
-       <netmask>255.255.255.254</netmask>
       </primary>
      </addresses>
     </ipv4-network>
@@ -2956,6 +2967,7 @@ end-policy
    </interface>
    <interface>
     <interface-name>Loopback0</interface-name>
+    <description>JUNIPER ROCKS!</description>
     <ipv4>
      <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
       <address>
@@ -2967,6 +2979,7 @@ end-policy
    </interface>
    <interface>
     <interface-name>Loopback1</interface-name>
+    <description>JUNIPER!</description>
    </interface>
    <interface>
     <interface-name>Loopback2</interface-name>
@@ -2997,6 +3010,18 @@ end-policy
       <address>
        <address>192.168.10.1</address>
        <netmask>255.255.255.0</netmask>
+      </address>
+     </addresses>
+    </ipv4>
+   </interface>
+   <interface>
+    <interface-name>Loopback11</interface-name>
+    <description>test11</description>
+    <ipv4>
+     <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
+      <address>
+       <address>11.11.11.11</address>
+       <netmask>255.255.255.255</netmask>
       </address>
      </addresses>
     </ipv4>
@@ -3085,7 +3110,7 @@ end-policy
    </interface>
    <interface>
     <interface-name>Loopback111</interface-name>
-    <description>Configured by NETCONF</description>
+    <description>NETCONF OpenConfig test</description>
     <ipv4>
      <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
       <address>
@@ -3094,6 +3119,7 @@ end-policy
       </address>
      </addresses>
     </ipv4>
+    <shutdown/>
    </interface>
    <interface>
     <interface-name>Loopback200</interface-name>
@@ -3108,7 +3134,11 @@ end-policy
     </ipv4>
    </interface>
    <interface>
+    <interface-name>Loopback444</interface-name>
+   </interface>
+   <interface>
     <interface-name>Loopback666</interface-name>
+    <description>test_ansible_666</description>
     <ipv4>
      <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
       <address>
@@ -3178,9 +3208,6 @@ end-policy
     </ipv4>
    </interface>
    <interface>
-    <interface-name>Loopback956</interface-name>
-   </interface>
-   <interface>
     <interface-name>Loopback996</interface-name>
     <description>testrterte</description>
    </interface>
@@ -3192,17 +3219,6 @@ end-policy
       <address>
        <address>1.1.1.1</address>
        <netmask>255.255.255.255</netmask>
-      </address>
-     </addresses>
-    </ipv4>
-   </interface>
-   <interface>
-    <interface-name>Loopback9991</interface-name>
-    <ipv4>
-     <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
-      <address>
-       <address>10.10.10.2</address>
-       <netmask>255.255.255.254</netmask>
       </address>
      </addresses>
     </ipv4>
@@ -4715,9 +4731,6 @@ end-policy
      <enable>true</enable>
     </config>
    </grpc-server>
-   <config>
-    <hostname>ansible-iosxr</hostname>
-   </config>
    <ntp>
     <servers>
      <server>
@@ -5264,6 +5277,35 @@ end-policy
    </defined-sets>
    <policy-definitions>
     <policy-definition>
+     <name>xyz</name>
+     <config>
+      <name>xyz</name>
+     </config>
+     <statements>
+      <statement>
+       <name>id-1</name>
+       <config>
+        <name>id-1</name>
+       </config>
+       <conditions>
+        <bgp-conditions xmlns="http://openconfig.net/yang/bgp-policy">
+         <match-community-set>
+          <config>
+           <community-set>xyz</community-set>
+           <match-set-options>ANY</match-set-options>
+          </config>
+         </match-community-set>
+        </bgp-conditions>
+       </conditions>
+       <actions>
+        <config>
+         <policy-result>ACCEPT_ROUTE</policy-result>
+        </config>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
      <name>PREP</name>
      <config>
       <name>PREP</name>
@@ -5436,6 +5478,7 @@ end-policy
     <config>
      <name>Loopback0</name>
      <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+     <description>JUNIPER ROCKS!</description>
     </config>
     <subinterfaces>
      <subinterface>
@@ -5459,6 +5502,7 @@ end-policy
     <config>
      <name>Loopback1</name>
      <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+     <description>JUNIPER!</description>
     </config>
    </interface>
    <interface>
@@ -5523,6 +5567,30 @@ end-policy
          <config>
           <ip>192.168.10.1</ip>
           <prefix-length>24</prefix-length>
+         </config>
+        </address>
+       </addresses>
+      </ipv4>
+     </subinterface>
+    </subinterfaces>
+   </interface>
+   <interface>
+    <name>Loopback11</name>
+    <config>
+     <name>Loopback11</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+     <description>test11</description>
+    </config>
+    <subinterfaces>
+     <subinterface>
+      <index>0</index>
+      <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
+       <addresses>
+        <address>
+         <ip>11.11.11.11</ip>
+         <config>
+          <ip>11.11.11.11</ip>
+          <prefix-length>32</prefix-length>
          </config>
         </address>
        </addresses>
@@ -5687,7 +5755,8 @@ end-policy
     <config>
      <name>Loopback111</name>
      <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
-     <description>Configured by NETCONF</description>
+     <enabled>false</enabled>
+     <description>NETCONF OpenConfig test</description>
     </config>
     <subinterfaces>
      <subinterface>
@@ -5731,10 +5800,18 @@ end-policy
     </subinterfaces>
    </interface>
    <interface>
+    <name>Loopback444</name>
+    <config>
+     <name>Loopback444</name>
+     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+    </config>
+   </interface>
+   <interface>
     <name>Loopback666</name>
     <config>
      <name>Loopback666</name>
      <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
+     <description>test_ansible_666</description>
     </config>
     <subinterfaces>
      <subinterface>
@@ -5871,13 +5948,6 @@ end-policy
     </subinterfaces>
    </interface>
    <interface>
-    <name>Loopback956</name>
-    <config>
-     <name>Loopback956</name>
-     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
-    </config>
-   </interface>
-   <interface>
     <name>Loopback996</name>
     <config>
      <name>Loopback996</name>
@@ -5902,29 +5972,6 @@ end-policy
          <config>
           <ip>1.1.1.1</ip>
           <prefix-length>32</prefix-length>
-         </config>
-        </address>
-       </addresses>
-      </ipv4>
-     </subinterface>
-    </subinterfaces>
-   </interface>
-   <interface>
-    <name>Loopback9991</name>
-    <config>
-     <name>Loopback9991</name>
-     <type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx:softwareLoopback</type>
-    </config>
-    <subinterfaces>
-     <subinterface>
-      <index>0</index>
-      <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
-       <addresses>
-        <address>
-         <ip>10.10.10.2</ip>
-         <config>
-          <ip>10.10.10.2</ip>
-          <prefix-length>31</prefix-length>
          </config>
         </address>
        </addresses>
