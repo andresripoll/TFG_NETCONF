@@ -7,7 +7,7 @@ topology:
       image: ceosimage:4.26.4M
     csr:
       kind: vr-csr
-      image: vrnetlab/vr-csr:17.03.03
+      image: vrnetlab/vr-csr:17.03.04
 
   links:
     - endpoints: ["ceos:eth1", "csr:eth1"]

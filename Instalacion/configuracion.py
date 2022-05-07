@@ -16,7 +16,7 @@ def instalar_imagenes():
 	fout = open("./srlceos01Tmp.clab.yml", 'w') # out file
 	for line in fin:
 		if "image: ceos:4.25.0F" in line:
-			fout.write("        image: ceos:4.25.0F".replace("ceos:4.25.0F", "ceosimage:4.26.4M"))
+			fout.write("        image: ceos:4.25.0F".replace("ceos:4.25.0F", "ceosimage:4.26.4M"))  #Cambiar por el nombre de la imagen que hayas descargado
 		else:
 			fout.write(line)
 	fin.close()

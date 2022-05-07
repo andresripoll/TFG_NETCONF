@@ -8,7 +8,7 @@ import xmltodict
 from lxml.etree import fromstring
 
 nc = {
-	"host": "172.20.20.3", 
+	"host": "172.20.20.2", 
 	"port": "830", 
 	"username":"admin",
 	"password": "admin",

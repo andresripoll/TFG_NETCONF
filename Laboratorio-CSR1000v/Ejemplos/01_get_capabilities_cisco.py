@@ -5,7 +5,7 @@
 from ncclient import manager
 
 nc = manager.connect(
-	host = "172.20.20.3", 
+	host = "172.20.20.2", 
 	port = "830", 
 	timeout = 30,
 	username = "admin",
