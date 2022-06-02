@@ -19,4 +19,8 @@ nc = manager.connect(
 SCHEMA = nc.get_schema("Cisco-IOS-XR-ipv4-ma-subscriber-cfg")
 print(SCHEMA)
 
+mydata = open("schema_cisco.xml", mode = "w")
+mydata.write(str(SCHEMA))
+mydata.close
+
 nc.close_session()

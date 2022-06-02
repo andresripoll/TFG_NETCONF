@@ -1,0 +1,116 @@
+<rpc-reply message-id="urn:uuid:369106dd-8826-4679-a5aa-a38b41729dd1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">module Cisco-IOS-XR-ipv4-ma-subscriber-cfg {
+
+  /*** NAMESPACE / PREFIX DEFINITION ***/
+
+  namespace &quot;http://cisco.com/ns/yang&quot;+
+    &quot;/Cisco-IOS-XR-ipv4-ma-subscriber-cfg&quot;;
+
+
+  prefix &quot;ipv4-ma-subscriber-cfg&quot;;
+
+  /*** LINKAGE (IMPORTS / INCLUDES) ***/
+
+  import cisco-semver { prefix &quot;semver&quot;; }
+
+  import Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg { prefix &quot;a1&quot;; }
+
+  /*** META INFORMATION ***/
+
+  organization &quot;Cisco Systems, Inc.&quot;;
+
+  contact
+    &quot;Cisco Systems, Inc.
+     Customer Service
+
+     Postal: 170 West Tasman Drive
+     San Jose, CA 95134
+
+     Tel: +1 800 553-NETS
+
+     E-mail: cs-yang@cisco.com&quot;;
+
+  description 
+    &quot;This module contains a collection of YANG definitions
+     for Cisco IOS-XR ipv4-ma-subscriber package configuration.
+
+     This YANG module augments the
+       Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg
+     module with configuration data.
+
+     Copyright (c) 2013-2019 by Cisco Systems, Inc.
+     All rights reserved.&quot;;
+
+  revision &quot;2019-04-05&quot; {
+    description
+      &quot;Establish semantic version baseline.&quot;;
+    semver:module-version &quot;1.0.1&quot;;
+  }
+
+  revision &quot;2015-07-30&quot; {
+    description
+      &quot;Descriptions updated.&quot;;
+  }
+
+  revision &quot;2015-01-07&quot; {
+    description
+      &quot;IOS XR 5.3.1 revision.&quot;;
+  }
+
+  grouping IPV4-NETWORK {
+    description
+      &quot;Common node of ip-subscriber, ppp,
+      subscriber-service&quot;;
+
+    container ipv4-network {
+      description &quot;Interface IPv4 Network configuration data&quot;;
+      leaf unnumbered {
+        type string;
+        description
+          &quot;Enable IP processing without an explicit
+          address&quot;;
+      }
+      leaf mtu {
+        type uint32 {
+          range &quot;68..65535&quot;;
+        }
+        units &quot;byte&quot;;
+        description &quot;The IP Maximum Transmission Unit&quot;;
+      }
+      leaf unreachables {
+        type boolean;
+        default &quot;false&quot;;
+        description &quot;TRUE if enabled, FALSE if disabled&quot;;
+      }
+      leaf rpf {
+        type boolean;
+        default &quot;true&quot;;
+        description &quot;TRUE if enabled, FALSE if disabled&quot;;
+      }
+    }
+  }
+
+  augment &quot;/a1:dynamic-template/a1:subscriber-services&quot;+
+    &quot;/a1:subscriber-service&quot; {
+    description
+      &quot;This augment extends the configuration data of
+      'Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg'&quot;;
+    uses IPV4-NETWORK;
+  }
+
+  augment &quot;/a1:dynamic-template/a1:ppps/a1:ppp&quot; {
+    description
+      &quot;This augment extends the configuration data of
+      'Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg'&quot;;
+    uses IPV4-NETWORK;
+  }
+
+  augment &quot;/a1:dynamic-template/a1:ip-subscribers/a1:ip-subscriber&quot; {
+    description
+      &quot;This augment extends the configuration data of
+      'Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg'&quot;;
+    uses IPV4-NETWORK;
+  }
+}
+</data>
+</rpc-reply>
