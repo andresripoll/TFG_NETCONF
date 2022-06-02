@@ -19,4 +19,8 @@ nc = manager.connect(
 SCHEMA = nc.get_schema("Cisco-IOS-XE-process-memory-oper")
 print(SCHEMA)
 
+mydata = open("schema_memory_cpu.xml", mode = "w")
+mydata.write(str(SCHEMA))
+mydata.close
+
 nc.close_session()

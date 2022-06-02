@@ -19,4 +19,8 @@ nc = manager.connect(
 SCHEMA = nc.get_schema("ietf-interfaces")
 print(SCHEMA)
 
+mydata = open("schema_interfaces.xml", mode = "w")
+mydata.write(str(SCHEMA))
+mydata.close
+
 nc.close_session()

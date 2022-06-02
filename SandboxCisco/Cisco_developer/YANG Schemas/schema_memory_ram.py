@@ -19,4 +19,8 @@ nc = manager.connect(
 SCHEMA = nc.get_schema("Cisco-IOS-XE-memory-oper")
 print(SCHEMA)
 
+mydata = open("schema_memory_ram.xml", mode = "w")
+mydata.write(str(SCHEMA))
+mydata.close
+
 nc.close_session()
