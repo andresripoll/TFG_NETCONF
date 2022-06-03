@@ -6,8 +6,8 @@ import sys
 import os
 from subprocess import call
 
-#Instala las imagenes de los routers
-def instalar_imagenes():
+#Instala la imagen del router Arista y Nokia
+def instalar_imagen_arista_nokia():
 	call("sudo chmod 666 /var/run/docker.sock", shell=True)
 	call("docker pull ghcr.io/nokia/srlinux:latest", shell=True)
 	call("docker import cEOS-lab-4.26.4M.tar.xz ceosimage:4.26.4M", shell=True)
@@ -34,12 +34,20 @@ def crear_lab_na():
 
 #Prepara el entorno para el uso de netconf
 def preparar_entorno():
-	call("sudo docker cp ./startup-config clab-srlceos01-ceos:/mnt/flash/startup-config", shell=True)
-	call(""" sudo docker exec -it clab-srlceos01-ceos Cli -p 15 -c "copy start run" """, shell=True)
+	call("sudo docker cp ./startup-config clab-csrceos01-ceos:/mnt/flash/startup-config", shell=True)
+	call(""" sudo docker exec -it clab-csrceos01-ceos Cli -p 15 -c "copy start run" """, shell=True)
+
+#Creación de la network entre telegraf y el router CSR1000v
+def crear_network_1000v():
+	call("sudo chmod 666 /var/run/docker.sock", shell=True)
+	call("docker network create networkCSR1000v --subnet=172.21.0.0/16", shell=True)
+	call("docker network connect --alias web1 networkCSR1000v dashboard_telegraf_1", shell=True)
+	call("docker network connect --alias web2 networkCSR1000v clab-csrceos01-csr", shell=True)
+
 
 #Funciones de ayuda
 def mostrar_ayuda():
-	ayuda_imagenes()
+	ayuda_imagen_arista_nokia()
 	print("")
 	ayuda_lab_ca()
 	print("")
@@ -51,17 +59,20 @@ def mostrar_ayuda():
 	print("\tParámetros:")
 	print("\t\t<cmd> -> opcional: para mostrar la ayuda de un único comando.")
 
-def ayuda_imagenes():
+def ayuda_imagen_arista_nokia():
 	print("imagenes                 ---> para instalar las imagenes de los routers del laboratorio. En concreto serán un router Nokia y el router Arista 4.26.4M.")
 
 def ayuda_lab_ca():
-	print("labca              ---> para crear el laboratorio de containerlab con un router Arista y uno de Cisco.")
+	print("labca                    ---> para crear el laboratorio de containerlab con un router Arista y uno de Cisco.")
 
 def ayuda_lab_na():
-	print("labna              ---> para crear el laboratorio de containerlab con un router Arista y uno de Nokia.")
+	print("labna                    ---> para crear el laboratorio de containerlab con un router Arista y uno de Nokia.")
 
 def ayuda_prepare():
 	print("prepare                  ---> para habilitar la configuración inicial con netconf en el router Arista.")
+
+def ayuda_network_1000v():
+	print("net1000v                 ---> para crear la network entre telegraf y el router CSR1000v despues de haber desplegado ambos contenedores.")
 
 #Inicio del script
 
@@ -74,7 +85,7 @@ if len(sys.argv) < 2:
 
 #Ordenes
 if sys.argv[1] == "imagenes":
-	instalar_imagenes()
+	instalar_imagen_arista_nokia()
 elif sys.argv[1] == "labca":
 	crear_lab_ca()
 elif sys.argv[1] == "labna":
@@ -84,7 +95,7 @@ elif sys.argv[1] == "prepare":
 elif sys.argv[1] == "help":
 	if len(sys.argv) > 2:
 		if (sys.argv[2] == "imagenes"):
-			ayuda_imagenes()
+			ayuda_imagen_arista_nokia()
 		elif (sys.argv[2] == "labca"):
 			ayuda_lab_ca()
 		elif (sys.argv[2] == "labna"):

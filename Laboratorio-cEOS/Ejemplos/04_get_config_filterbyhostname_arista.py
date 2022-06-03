@@ -25,6 +25,11 @@ hostname = """
 	</config>
 </system>
 """
-print(eos.get_config(source="running", filter=("subtree", hostname)))
+config = eos.get_config(source="running", filter=("subtree", hostname))
+print(config)
+
+mydata = open("config_hostname_arista.xml", mode = "w")
+mydata.write(str(config))
+mydata.close
 
 eos.close_session()

@@ -1,0 +1,1 @@
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:cc164551-d0ae-4b0f-8233-c7b859660891"><data time-modified="2022-06-02T09:28:16.512630108Z"><system xmlns="http://openconfig.net/yang/system"><config><hostname>ceos</hostname></config></system></data></rpc-reply>
