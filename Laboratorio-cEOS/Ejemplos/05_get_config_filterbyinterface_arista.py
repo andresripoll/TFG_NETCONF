@@ -5,10 +5,10 @@
 from ncclient import manager
 
 eos = manager.connect(
-	host = "172.20.20.2", 
+	host = "172.20.20.3", 
 	port = "830", 
 	username = "admin",
-	password = "xxxx",
+	password = "admin",
 	hostkey_verify = False,
 	device_params = {'name':'default'},
 	look_for_keys = False, 

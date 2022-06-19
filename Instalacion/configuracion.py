@@ -92,6 +92,8 @@ elif sys.argv[1] == "labna":
 	crear_lab_na()
 elif sys.argv[1] == "prepare":
 	preparar_entorno()
+elif sys.argv[1] == "net1000v":
+	crear_network_1000v()
 elif sys.argv[1] == "help":
 	if len(sys.argv) > 2:
 		if (sys.argv[2] == "imagenes"):
@@ -102,6 +104,8 @@ elif sys.argv[1] == "help":
 			ayuda_lab_na()
 		elif (sys.argv[2] == "prepare"):
 			ayuda_prepare()
+		elif (sys.argv[2] == "net1000v"):
+			ayuda_network_1000v()
 		else:
 			mostrar_ayuda()
 	else:
