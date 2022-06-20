@@ -44,6 +44,14 @@ def crear_network_1000v():
 	call("docker network connect --alias web1 networkCSR1000v dashboard_telegraf_1", shell=True)
 	call("docker network connect --alias web2 networkCSR1000v clab-csrceos01-csr", shell=True)
 
+#Borra el laboratorio
+def destruir_lab():
+	call("sudo containerlab destroy -t csrceos01.clab.yml --cleanup", shell=True)
+
+#Borra la network entre telegraf y el router CSR1000v
+def destruir_net():
+	call("sudo chmod 666 /var/run/docker.sock", shell=True)
+	call("docker network rm networkCSR1000v", shell=True)
 
 #Funciones de ayuda
 def mostrar_ayuda():
@@ -54,6 +62,12 @@ def mostrar_ayuda():
 	ayuda_lab_na()
 	print("")
 	ayuda_prepare()
+	print("")
+	ayuda_network_1000v()
+	print("")
+	ayuda_destruir_lab()
+	print("")
+	ayuda_destruir_net()
 	print("")
 	print("help <cmd>             ---> para mostrar esta pantalla de ayuda o solo la ayuda de un comando.")
 	print("\tParámetros:")
@@ -73,6 +87,12 @@ def ayuda_prepare():
 
 def ayuda_network_1000v():
 	print("net1000v                 ---> para crear la network entre telegraf y el router CSR1000v despues de haber desplegado ambos contenedores.")
+
+def ayuda_destruir_lab():
+	print("deslab                   ---> para borrar el laboratorio.")
+
+def ayuda_destruir_net():
+	print("desnet                   ---> para borrar la network entre telegraf y el router CSR1000v.")
 
 #Inicio del script
 
@@ -94,6 +114,10 @@ elif sys.argv[1] == "prepare":
 	preparar_entorno()
 elif sys.argv[1] == "net1000v":
 	crear_network_1000v()
+elif sys.argv[1] == "deslab":
+	destruir_lab()
+elif sys.argv[1] == "desnet":
+	destruir_net()
 elif sys.argv[1] == "help":
 	if len(sys.argv) > 2:
 		if (sys.argv[2] == "imagenes"):
@@ -106,6 +130,10 @@ elif sys.argv[1] == "help":
 			ayuda_prepare()
 		elif (sys.argv[2] == "net1000v"):
 			ayuda_network_1000v()
+		elif (sys.argv[2] == "deslab"):
+			ayuda_destruir_lab()
+		elif (sys.argv[2] == "desnet"):
+			ayuda_destruir_net()
 		else:
 			mostrar_ayuda()
 	else:
